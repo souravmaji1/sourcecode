@@ -1,25 +1,18 @@
 'use client'
 
-import Link from 'next/link';
 import { useState } from 'react';
 import { useSignUp } from "@clerk/nextjs";
-import { useUser } from '@clerk/nextjs';
 import { createClient } from '@supabase/supabase-js';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import axios from 'axios';
 
-const supabase = createClient('https://tbnfcmekmqbhxfvrzmbp.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRibmZjbWVrbXFiaHhmdnJ6bWJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA4NTI5MjUsImV4cCI6MjAzNjQyODkyNX0.M5pBYdFpa3oonK4yXrW0hDsjhrlq7NNjB5p7PY4DmCI');
+
+const supabaseUrl = 'https://tnijqmtoqpmgdhvltuhl.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRuaWpxbXRvcXBtZ2Rodmx0dWhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUwOTE3MzcsImV4cCI6MjA0MDY2NzczN30.3c2EqGn5n0jLmG4l2NO_ovN_aIAhaLDBa0EKdwdnhCg';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function AuthenticationPage() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -29,6 +22,7 @@ export default function AuthenticationPage() {
   const [error, setError] = useState('');
   const [verifying, setVerifying] = useState(false);
   const [code, setCode] = useState('');
+  const [ username, setUsername] =  useState('');
 
   
 
@@ -40,6 +34,7 @@ export default function AuthenticationPage() {
       const result = await signUp.create({
         emailAddress: email,
         password,
+        username: username
       });
 
       await result.prepareEmailAddressVerification({ strategy: "email_code" });
@@ -65,11 +60,9 @@ export default function AuthenticationPage() {
         await setActive({ session: completeSignUp.createdSessionId });
         const userId = completeSignUp.createdUserId;
 
-        const response = await axios.post('/api/create-stripe-account', { email });
-        const stripeAccountId = response.data.stripeAccountId;
 
         const { data, error } = await supabase.from('users').insert([
-          { userid: userId, email: email, role: role, stripe_account_id: stripeAccountId }
+          { userid: userId, email: email, credits: 25 }
         ]);
 
         if (error) throw error;
@@ -133,20 +126,10 @@ export default function AuthenticationPage() {
                     <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                   </div>
                   <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="role">Role</Label>
-                    <Select value={role} onValueChange={setRole}>
-                      <SelectTrigger id="role">
-                        <SelectValue placeholder="Select a role" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        <SelectItem value="buyer">Buyer</SelectItem>
-                        <SelectItem value="seller">Seller</SelectItem>
-                        <SelectItem value="agent">Agent</SelectItem>
-                        <SelectItem value="landinspector">Inspector</SelectItem>
-                        <SelectItem value="attorney">Attorney</SelectItem>
-                        <SelectItem value="professional">Professional</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="username">Username</Label>
+                  <Input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                </div>
                   </div>
                 </div>
               </form>

@@ -1,0 +1,100 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
+
+const ReplyGenPromptInterface = () => {
+  const [initialMessage, setInitialMessage] = useState("I am your virtual assistant. how can I help you today?");
+  const [initialPrompt, setInitialPrompt] = useState("ntid Prurv\nGreet the User with \"Hi there let'S get you started\" and in same message to them that you can write organized\nmarkdown including lists, bold text, italic etc.\nThen use the showcase the following images in a carousel:*\n!(Image - Cool cat with glasses)(https://i.ibb.co/7QZQLBh/a50yaaaaaaaaa.png)\n- Lovely cat close up(https://i-ibb.co/tcT3ppf/photo-2023-06-07-19--19-08jpg)\n!(Image - Guy petting cat)(https://i.ibb.co/cvbF1mX/photo-2023-11-28-04-33-CX).jpg*\nThen show the infamous Rick Astely video in an iFrame after mentioning that you could render youtube videos just like you will");
+  const [systemPrompt, setSystemPrompt] = useState("ou are a friendly, rdiste, genius customer-cue bot delivering efficient solutions from our comprehensive knowiecige base.");
+  const [model, setModel] = useState('GPT-4o-OpenAI');
+  const [temperature, setTemperature] = useState(0.5);
+  const [uiEngine, setUiEngine] = useState(false);
+
+  return (
+    <div className="w-full max-w-6xl mx-auto p-4">
+      
+
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <Card>
+            <CardContent className="p-4 space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">The initial message the AI agent will start with,</label>
+                <Input
+                  value={initialMessage}
+                  onChange={(e) => setInitialMessage(e.target.value)}
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-1">Initial prompt to agent (If provided Will overide inital messages)</label>
+                <Textarea
+                  value={initialPrompt}
+                  onChange={(e) => setInitialPrompt(e.target.value)}
+                  rows={8}
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-1">System Prompt</label>
+                <Textarea
+                  value={systemPrompt}
+                  onChange={(e) => setSystemPrompt(e.target.value)}
+                  rows={4}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="w-80">
+          <Card>
+            <CardContent className="p-4 space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">LLM</label>
+                <Select value={model} onValueChange={setModel}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a model" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="GPT-4o-OpenAI">GPT-4o-OpenAI</SelectItem>
+                    <SelectItem value="gpt-4o| tools">gpt-4o| tools</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-1">Temperature: {temperature}</label>
+                <Slider
+                  value={[temperature]}
+                  onValueChange={(value) => setTemperature(value[0])}
+                  max={1}
+                  step={0.1}
+                />
+                <p className="text-xs text-gray-500 mt-1">Higher values means more randomness</p>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">UI Engine(Experimental)</span>
+                <Switch
+                  checked={uiEngine}
+                  onCheckedChange={setUiEngine}
+                />
+              </div>
+              <p className="text-xs text-gray-500">Enabling this will append further instructions in system prompt to make the AI agent output json data that can be used to render elements, like Buttons, card*, Carousels, etc. This feature is experimental and may not work as expected.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ReplyGenPromptInterface;

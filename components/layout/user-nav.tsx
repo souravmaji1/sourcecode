@@ -11,7 +11,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import PaymentPage from '@/components/payment'
+
 
 import { UserButton, useUser } from '@clerk/nextjs';
 
@@ -26,7 +26,7 @@ export function UserNav() {
   
     return (
       <DropdownMenu>
-        <PaymentPage />
+        
         
           
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">

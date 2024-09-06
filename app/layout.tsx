@@ -6,13 +6,13 @@ import NextTopLoader from 'nextjs-toploader';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { auth } from '@/auth';
-import { CrispProvider } from '@/components/crisp-provider';
 import { ClerkProvider } from '@clerk/nextjs';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Next Shadcn',
+  title: 'Replygen',
   description: 'Basic dashboard with Next.js and Shadcn'
 };
 
@@ -24,19 +24,22 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <ClerkProvider>
-    <html lang="en" suppressHydrationWarning>
-      <head>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDouThG6E25LaMNsjVJ_cYVpfh3KHQJ_jM"></script>
-      </head>
-      <CrispProvider />
-      <body className={`${inter.className} `}>
-        <NextTopLoader />
-        <Providers session={session}>
-          <Toaster />
-          {children}
-        </Providers>
-      </body>
-    </html>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <Script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDouThG6E25LaMNsjVJ_cYVpfh3KHQJ_jM"
+            strategy="beforeInteractive"
+          />
+        </head>
+        <body className={`${inter.className}`}>
+          <NextTopLoader />
+          <Providers session={session}>
+            <Toaster />
+            {children}
+           
+          </Providers>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

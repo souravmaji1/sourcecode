@@ -1,32 +1,27 @@
-import NavBar from '@/components/common/NavBar';
-import CaseStudySection from '@/components/sections/CaseStudySection';
-import ContactUsSection from '@/components/sections/ContactUsSection';
-import FooterSection from '@/components/sections/FooterSection';
-import { HeroScrollDemo } from '@/components/sections/HeroSection';
-import LetMakeThingsHappenSection from '@/components/sections/LetMakeThingsHappenSection';
-import LogoGroupSection from '@/components/sections/LogoGroupSection';
-import OurWorkingProcessSection from '@/components/sections/OurWorkingProcessSection';
-import ServiceSection from '@/components/sections/ServiceSection';
-import TeamSection from '@/components/sections/TeamSection';
-import PricingTable from '../components/sections/PricingTable';
-import ZillowPage from '@/components/scrape';
+import AgentCreationSteps from "@/components/layout/sections/benefits";
+import Faq from "@/components/layout/sections/faq";
+import { FeaturesSection } from "@/components/layout/sections/features";
+import { FooterSection } from "@/components/layout/sections/footer";
+import { HeroSection } from "@/components/layout/sections/hero";
+import PricingSection from "@/components/layout/sections/pricing";
+import { ServicesSection } from "@/components/layout/sections/services";
+
+import Navbar from "@/components/layout/navbar";
+
 
 export default function Home() {
   return (
-    <main>
-      <NavBar />
-      <div className="mx-4 flex flex-col gap-[140px] p-8 pt-[70px] md:mx-[100px]">
-        <HeroScrollDemo />
-
-        <LogoGroupSection />
-        <ServiceSection />
-        <LetMakeThingsHappenSection />
-        <CaseStudySection />
-        <OurWorkingProcessSection />
-        <TeamSection />
-        <PricingTable />
-        <FooterSection />
-      </div>
-    </main>
+    <>
+      
+     <Navbar />
+      <HeroSection />
+      <AgentCreationSteps />
+     <FeaturesSection />
+      <ServicesSection />
+     
+      <PricingSection />
+      <Faq />
+      <FooterSection />
+    </>
   );
 }
