@@ -1,119 +1,47 @@
-import { Separator } from "@/components/ui/separator";
-import { ChevronsDownIcon } from "lucide-react";
-import Link from "next/link";
+import Link from 'next/link'
+import { Button } from "@/components/ui/button"
 
-export const FooterSection = () => {
+const Footer = () => {
   return (
-    <footer id="footer" className="container py-24 sm:py-32">
-      <div className="p-10 bg-card border border-secondary rounded-2xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-          <div className="col-span-full xl:col-span-2">
-            <Link href="#" className="flex font-bold items-center">
-              <ChevronsDownIcon className="w-9 h-9 mr-2 bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg border border-secondary" />
-
-              <h3 className="text-2xl">StartConvo</h3>
-            </Link>
+    <footer className="bg-gray-100 py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo and description */}
+          <div className="col-span-1 md:col-span-2">
+            <h2 className="text-2xl font-bold mb-4">Your Logo</h2>
+            <p className="text-gray-600 mb-4">
+              A brief description of your company or website.
+            </p>
+            <Button variant="outline">Get Started</Button>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Contact</h3>
-            <div>
-              <Link href="https://github.com/souravmaji1" className="opacity-60 hover:opacity-100">
-                Github
-              </Link>
-            </div>
-
-            <div>
-              <Link href="https://x.com/SouravMaji221" className="opacity-60 hover:opacity-100">
-                Twitter
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Instagram
-              </Link>
-            </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link href="/" className="text-gray-600 hover:text-gray-900">Home</Link></li>
+              <li><Link href="/about" className="text-gray-600 hover:text-gray-900">About</Link></li>
+              <li><Link href="/services" className="text-gray-600 hover:text-gray-900">Services</Link></li>
+              <li><Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link></li>
+            </ul>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Platforms</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                iOS
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Android
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Web
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Help</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Contact Us
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                FAQ
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Feedback
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Socials</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitch
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Discord
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Dribbble
-              </Link>
-            </div>
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <p className="text-gray-600">123 Main St, City, Country</p>
+            <p className="text-gray-600">info@example.com</p>
+            <p className="text-gray-600">+1 234 567 8900</p>
           </div>
         </div>
 
-        <Separator className="my-6" />
-        <section className="">
-          <h3 className="">
-            &copy; 2024 Designed and developed by
-            <Link
-              target="_blank"
-              href="https://x.com/SouravMaji221"
-              className="text-primary transition-all border-primary hover:border-b-2 ml-1"
-            >
-              StartConvo
-            </Link>
-          </h3>
-        </section>
+        {/* Copyright */}
+        <div className="mt-8 pt-8 border-t border-gray-200 text-center">
+          <p className="text-gray-600">&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
       </div>
     </footer>
-  );
-};
+  )
+}
+
+export default Footer
