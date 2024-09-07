@@ -1,3 +1,5 @@
+'use client'
+import React from 'react'
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -60,20 +62,33 @@ const plans: PlanProps[] = [
 
 export default function PricingSection() {
   return (
-    <section className="px-24 py-24 sm:py-32" style={{background:'linear-gradient(164deg, #fbd8d8, #b280f3)'}}>
-      <h2 className="text-5xl md:text-6xl text-center font-bold mb-4">Plan and Pricing</h2>
-      <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14">
+    <section className="px-4 md:px-24 py-12 md:py-24 sm:py-32" style={{background:'linear-gradient(164deg, #fbd8d8, #b280f3)'}}>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .pricing-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .pricing-card {
+            transform: scale(1) !important;
+          }
+          .pricing-card-popular {
+            order: -1;
+          }
+        }
+      `}</style>
+      <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-bold mb-4">Plan and Pricing</h2>
+      <h3 className="md:w-3/4 lg:w-1/2 mx-auto text-lg md:text-xl text-center text-muted-foreground pb-8 md:pb-14">
         Choose the plan that best fits your content creation needs and unlock the full potential of AI.
       </h3>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
+      <div className="pricing-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
         {plans.map(({ title, popular, price, description, buttonText, benefitList }) => (
           <Card
             key={title}
-            className={
+            className={`pricing-card ${
               popular === PopularPlan.YES
-                ? "border-0 drop-shadow-xl shadow-black/10 dark:shadow-white/10 border-[1.5px] border-primary lg:scale-[1.1] bg-[#231D4F] text-white"
+                ? "pricing-card-popular border-0 drop-shadow-xl shadow-black/10 dark:shadow-white/10 border-[1.5px] border-primary lg:scale-[1.1] bg-[#231D4F] text-white"
                 : "border-0"
-            }
+            }`}
           >
             <CardHeader>
               <CardTitle className="pb-2">{title}</CardTitle>

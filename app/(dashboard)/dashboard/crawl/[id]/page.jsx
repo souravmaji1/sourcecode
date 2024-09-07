@@ -203,7 +203,7 @@ const ReplyGenCrawler = () => {
   
       setProgress(10);
       
-      const uploadResponse = await fetch('http://localhost:4000/upload-dataset', {
+      const uploadResponse = await fetch('https://startconvoai.onrender.com/upload-dataset', {
         method: 'POST',
         body: formData,
       });

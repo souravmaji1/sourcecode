@@ -158,7 +158,7 @@ Follow the instructions on the Make.com website to complete the installation.`;
           throw new Error('Unsupported platform');
       }
 
-      const response = await axios.post(`http://localhost:4000${endpoint}`, payload);
+      const response = await axios.post(`https://startconvoai.onrender.com${endpoint}`, payload);
 
       if (currentPlatform === 'WhatsApp' && response.data.qrCode) {
         setQrCode(response.data.qrCode);

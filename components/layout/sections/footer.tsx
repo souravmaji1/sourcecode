@@ -8,11 +8,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and description */}
           <div className="col-span-1 md:col-span-2">
-            <h2 className="text-2xl font-bold mb-4">Your Logo</h2>
+          <Link href="/" className="text-xl font-bold text-purple-600">
+            REPLYGEN
+          </Link>
             <p className="text-gray-600 mb-4">
               A brief description of your company or website.
             </p>
-            <Button variant="outline">Get Started</Button>
+            <Button >Get Started</Button>
           </div>
 
           {/* Quick Links */}

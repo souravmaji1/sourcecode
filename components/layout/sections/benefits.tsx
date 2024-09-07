@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -36,22 +37,45 @@ export default function Component() {
   ]
 
   return (
-    <div className="min-h-screen  text-white p-8">
-       <h2 className="text-5xl md:text-6xl text-center text-black  font-bold mb-4">
-      How it works ?
-    </h2>
-    <p className="text-xl text-muted-foreground text-center">
-      🚀 Get started in 5 simple steps.
-    </p>
+    <div className="min-h-screen text-white p-8">
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .step-container {
+            flex-direction: column !important;
+            gap: 2rem !important;
+          }
+          .step-content, .step-image {
+            width: 100% !important;
+          }
+          .step-content {
+            text-align: center;
+          }
+          .step-number {
+            font-size: 3rem !important;
+          }
+          .step-title {
+            font-size: 1.5rem !important;
+          }
+          .step-description {
+            font-size: 1rem !important;
+          }
+        }
+      `}</style>
+      <h2 className="text-5xl md:text-6xl text-center text-black font-bold mb-4">
+        How it works?
+      </h2>
+      <p className="text-xl text-muted-foreground text-center">
+        🚀 Get started in 5 simple steps.
+      </p>
       <div className="max-w-6xl mx-auto mt-20 space-y-24">
         {steps.map((step, index) => (
-          <div key={index} className={`flex items-center gap-8 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}>
-            <div className="flex-1 space-y-4">
-              <h2 className="text-6xl font-bold text-purple-600">{step.number}</h2>
-              <h3 className="text-2xl font-semibold text-black">{step.title}</h3>
-              <p className="text-gray-600">{step.description}</p>
+          <div key={index} className={`step-container flex items-center gap-8 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}>
+            <div className="step-content flex-1 space-y-4">
+              <h2 className="step-number text-6xl font-bold text-purple-600">{step.number}</h2>
+              <h3 className="step-title text-2xl font-semibold text-black">{step.title}</h3>
+              <p className="step-description text-gray-600">{step.description}</p>
             </div>
-            <Card className="flex-1 bg-gray-900 border-gray-800">
+            <Card className="step-image flex-1 bg-gray-900 border-gray-800">
               <CardContent className="p-0">
                 <img src={step.image} alt={`Step ${step.number}`} className="w-full h-auto" />
               </CardContent>
