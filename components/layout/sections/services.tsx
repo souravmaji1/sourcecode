@@ -68,7 +68,7 @@ export const ServicesSection = () => {
             height={1200}
             className="w-full md:w-[1200px] mx-auto rounded-lg relative rouded-lg leading-none flex items-center border border-t-2 border-secondary  border-t-primary/30"
             src=
-               "/h.png"
+               "/last.png"
             
             alt="AI bot creator dashboard"
           />
