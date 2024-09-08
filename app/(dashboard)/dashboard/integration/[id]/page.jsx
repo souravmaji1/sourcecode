@@ -109,7 +109,7 @@ const IntegrationDashboard = () => {
     container.style.overflow = 'hidden';
     
     var iframe = document.createElement('iframe');
-    iframe.src = 'https://your-widget-url.com/?model=${finetuneid}';
+    iframe.src = 'https://replygen.netlify.app/?model=${finetuneid}';
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.style.border = 'none';

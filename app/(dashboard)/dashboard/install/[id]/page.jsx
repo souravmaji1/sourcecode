@@ -58,7 +58,7 @@ const InstallChatWidget = () => {
 
 
 
-  const installCode = ` <iframe src="http://localhost:3001/?model=${finetuneid}"
+  const installCode = ` <iframe src="https://replygen.netlify.app/?model=${finetuneid}"
              width="100%" style={{height:'100vh'}} />`;
 
   return (
