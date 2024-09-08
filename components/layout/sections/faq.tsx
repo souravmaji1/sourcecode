@@ -5,7 +5,7 @@ import { RocketIcon, MessageCircleIcon } from "lucide-react"
 export default function Faq() {
   return (
     <Card className="w-full mt-20  max-w-6xl mx-auto">
-      <CardContent className="p-6 bg-gradient-to-b from-purple-500 to-blue-600 text-white rounded-lg">
+      <CardContent className="p-6  text-white rounded-lg"  style={{background:'linear-gradient(180deg, #8D80C6 0%, #002E62 100%)'}}>
         <CardHeader className="pb-4">
           <CardTitle className="text-4xl font-bold text-center">Get Started Now</CardTitle>
         </CardHeader>

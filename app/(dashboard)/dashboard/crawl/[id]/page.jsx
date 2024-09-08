@@ -126,7 +126,7 @@ const ReplyGenCrawler = () => {
       setLinksFound(0);
 
       for (const url of links) {
-        const response = await fetch(`https://startconvoai.onrender.com/scrape?url=${encodeURIComponent(url)}`);
+        const response = await fetch(`https://replygenbackend.onrender.com/scrape?url=${encodeURIComponent(url)}`);
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.error || `Failed to scrape website: ${url}`);
@@ -203,7 +203,7 @@ const ReplyGenCrawler = () => {
   
       setProgress(10);
       
-      const uploadResponse = await fetch('https://startconvoai.onrender.com/upload-dataset', {
+      const uploadResponse = await fetch('https://replygenbackend.onrender.com/upload-dataset', {
         method: 'POST',
         body: formData,
       });
